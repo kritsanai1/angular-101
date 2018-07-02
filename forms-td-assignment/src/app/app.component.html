@@ -16,10 +16,8 @@
         </div>
         <div class="form-group">
           <label for="subscription">Subscription: </label>
-          <select name="subscription" class="form-control" ngModel required #subscription="ngModel">
-            <option value="basic">Basic</option>
-            <option value="advanced">Advanced</option>
-            <option value="pro">Pro</option>
+          <select name="subscription" class="form-control" [ngModel]="subscriptionOptions[1]" required #subscription="ngModel">
+            <option *ngFor="let option of subscriptionOptions" [value]="option"> {{option}} </option>
           </select>
           <div *ngIf="subscription.invalid && !subscription.touched">This subscription is invalid!</div>
         </div>
@@ -31,7 +29,6 @@
         <button
           type="submit"
           class="btn btn-primary"
-          (click)="onSubmit()"
           [disabled]="f.invalid">submit</button>
 
         <hr>
